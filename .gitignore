@@ -1,0 +1,8 @@
+venv
+.vscode
+log/*
+data/*
+*.pyc
+__pycache__/
+*.py[cod]
+*$py.class
