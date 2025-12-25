@@ -1,0 +1,261 @@
+/* Main Window */
+QMainWindow, QWidget {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    font-family: "Segoe UI", sans-serif;
+    font-size: 13px;
+}
+
+/* Group Boxes (SetUp / Progress) */
+QGroupBox {
+    border: 1px solid #333333;
+    border-radius: 8px;
+    margin-top: 20px;
+    font-weight: bold;
+    color: #3b82f6; /* Accent color for titles */
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 5px;
+}
+
+/* Input Fields */
+QLineEdit, QSpinBox {
+    background-color: #2d2d2d;
+    border: 1px solid #3d3d3d;
+    border-radius: 4px;
+    padding: 6px;
+    color: white;
+}
+
+QLineEdit:focus {
+    border: 1px solid #3b82f6;
+}
+
+/* Progress Bar */
+QProgressBar {
+    border: none;
+    border-radius: 5px;
+    background-color: #333333;
+    text-align: center;
+    height: 20px;
+}
+
+QProgressBar::chunk {
+    background-color: #3b82f6;
+    border-radius: 5px;
+}
+
+/* Tabs */
+QTabBar::tab {
+    background: #252526;
+    padding: 8px 20px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    margin-right: 2px;
+}
+
+QTabBar::tab:selected {
+    background: #3b82f6;
+    color: white;
+}
+
+/* Buttons */
+QPushButton {
+    background-color: #3b82f6;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    padding: 10px;
+    font-weight: bold;
+}
+
+QPushButton:hover {
+    background-color: #2563eb;
+}
+
+QPushButton:pressed {
+    background-color: #1d4ed8;
+}
+
+/* Add this to your QSS files */
+QCheckBox::indicator {
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+}
+
+/* Unchecked */
+QCheckBox::indicator:unchecked {
+    border: 2px solid #555555;
+    background: transparent;
+}
+
+/* Checked */
+QCheckBox::indicator:checked {
+    background-color: #3b82f6;
+    border: 2px solid #3b82f6;
+    image: url(check_icon.png); /* Optional: add a small white check icon */
+}
+
+/* Remove border from the main container */
+QTabWidget#tabWidget {
+    border: none;
+}
+
+/* This is the part that actually draws the frame around the content */
+QTabWidget::pane { 
+    border: none;
+    top: -1px; /* Optional: Pulls the pane up to overlap the tab bar slightly */
+    background: transparent; 
+}
+
+/* Optional: Clean up the bar background too */
+QTabBar {
+    background: transparent;
+    border: none;
+}
+
+/* 1. Remove the bulky frame */
+QTabWidget::pane {
+    border: none;
+    background: transparent;
+}
+
+/* 2. Center the Tab Bar area */
+QTabWidget {
+    qproperty-tabPosition: North; /* Keeps tabs at the top */
+}
+
+/* 3. Style the individual tabs */
+QTabBar::tab {
+    background: #2d2d2d;      /* Dark background for unselected */
+    color: #aaaaaa;
+    padding: 8px 30px;        /* Wide padding for a premium look */
+    margin: 0 5px;            /* Gap between tabs */
+    border-radius: 15px;      /* Pill-shaped tabs */
+    min-width: 80px;
+}
+
+QTabBar::tab:selected {
+    background: #3b82f6;      /* Modern Blue */
+    color: white;
+    font-weight: bold;
+}
+
+QTabBar::tab:hover:!selected {
+    background: #3d3d3d;      /* Subtle hover effect */
+}
+
+/* ================================
+   QTableWidget - Dark Theme
+   ================================ */
+
+QTableWidget {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    gridline-color: #2d2d2d;
+    border: 1px solid #2d2d2d;
+    font-size: 13px;
+}
+
+/* Remove focus dotted outline */
+QTableWidget:focus {
+    outline: none;
+}
+
+/* Cells */
+QTableWidget::item {
+    padding: 6px;
+    border: none;
+}
+
+/* Alternate row colors */
+QTableWidget::item:alternate {
+    background-color: #252526;
+}
+
+/* Selected row */
+QTableWidget::item:selected {
+    background-color: #0078d7;
+    color: #ffffff;
+}
+
+/* Hover effect */
+QTableWidget::item:hover {
+    background-color: #2a2d2e;
+}
+
+/* ================================
+   Header
+   ================================ */
+
+QHeaderView::section {
+    background-color: #2d2d2d;
+    color: #dcdcdc;
+    padding: 6px;
+    border: 1px solid #3a3a3a;
+    font-weight: bold;
+}
+
+/* Header hover */
+QHeaderView::section:hover {
+    background-color: #3a3a3a;
+}
+
+/* ================================
+   Corner button (top-left)
+   ================================ */
+
+QTableCornerButton::section {
+    background-color: #2d2d2d;
+    border: 1px solid #3a3a3a;
+}
+
+/* ================================
+   Scrollbars
+   ================================ */
+
+QScrollBar:vertical {
+    background: #1e1e1e;
+    width: 12px;
+    margin: 0px;
+}
+
+QScrollBar::handle:vertical {
+    background: #444;
+    min-height: 20px;
+    border-radius: 6px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background: #555;
+}
+
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical {
+    height: 0;
+}
+
+QScrollBar:horizontal {
+    background: #1e1e1e;
+    height: 12px;
+    margin: 0px;
+}
+
+QScrollBar::handle:horizontal {
+    background: #444;
+    min-width: 20px;
+    border-radius: 6px;
+}
+
+QScrollBar::handle:horizontal:hover {
+    background: #555;
+}
+
+QScrollBar::add-line:horizontal,
+QScrollBar::sub-line:horizontal {
+    width: 0;
+}
