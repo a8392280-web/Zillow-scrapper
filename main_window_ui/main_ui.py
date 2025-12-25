@@ -297,7 +297,7 @@ class Ui_MainWindow(object):
         self.location_input.setPlaceholderText("")
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Max Pages:", None))
         self.export_group.setTitle(QCoreApplication.translate("MainWindow", u"Export Format:-", None))
-        self.csv_checkBox.setText(QCoreApplication.translate("MainWindow", u"CSV", None))
+        self.csv_checkBox.setText(QCoreApplication.translate("MainWindow", u"CSV (default )", None))
         self.Excel_checkBox.setText(QCoreApplication.translate("MainWindow", u"Excel", None))
         self.json_checkBox.setText(QCoreApplication.translate("MainWindow", u"JSON", None))
         self.all_checkbox.setText(QCoreApplication.translate("MainWindow", u"All", None))
