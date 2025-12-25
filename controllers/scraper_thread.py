@@ -38,7 +38,9 @@ class ScraperThread(QThread):
         except Exception as e:
             self.log_update.emit(f"❌ Error: {str(e)}")
             self.finished_scraping.emit([])
-    
+        finally:
+            # Reset UI state even if error occurs
+            pass
 
     def stop(self):
         """Stop the scraping"""

@@ -50,17 +50,21 @@ class ZillowScraper():
         self.should_stop = False 
 
 
-    def fetch_html(self):
-        try:
-            logging.info("fetching html...")
-            time.sleep(random.uniform(2, 4))
-            response =self.session.get(self.url,headers=self.HEADERS,timeout=15)
-            response.raise_for_status()
-            return response.text
+    def fetch_html(self,max_retries=3):
+        for attempt in range(max_retries):
+            try:
+                logging.info(f"Fetching HTML (attempt {attempt + 1}/{max_retries})")
+                time.sleep(random.uniform(2, 4))
+                response =self.session.get(self.url,headers=self.HEADERS,timeout=15)
+                response.raise_for_status()
+                return response.text
 
-        except requests.exceptions.RequestException as e:
-            logging.error(f"Request error: {e}")
-            return None 
+            except requests.exceptions.RequestException as e:
+                logging.warning(f"Attempt {attempt + 1} failed: {e}")
+                if attempt == max_retries - 1:
+                    logging.error("All retries failed")
+                    return None
+                time.sleep(5)  # Wait before retry
 
     def extract_info(self,content):
         logging.info("extracting data...")
@@ -223,6 +227,11 @@ class ZillowScraper():
         
         logging.info(f"Total: Fetched {len(all_results)} listings from {self.max_pages} page(s)")
         return all_results
+    
+    def __del__(self):
+        """Cleanup when scraper is destroyed"""
+        if hasattr(self, 'session'):
+            self.session.close()
         
 
 

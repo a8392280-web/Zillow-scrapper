@@ -133,7 +133,7 @@
               <item>
                <widget class="QCheckBox" name="csv_checkBox">
                 <property name="text">
-                 <string>CSV</string>
+                 <string>CSV (default )</string>
                 </property>
                </widget>
               </item>

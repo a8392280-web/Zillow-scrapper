@@ -70,6 +70,13 @@ class MainWindow(QMainWindow):
             self.log("❌ Error: Please enter a location")
             return
         
+        # ✅ Prevent user from changing settings mid-scrape
+        self.ui.location_input.setEnabled(False)
+        self.ui.max_pages.setEnabled(False)
+        self.ui.csv_checkBox.setEnabled(False)
+        self.ui.Excel_checkBox.setEnabled(False)
+        self.ui.json_checkBox.setEnabled(False)        
+
         # Update UI state
         self.ui.start_button.setEnabled(False)
         self.ui.stop_button.setEnabled(True)
@@ -80,21 +87,35 @@ class MainWindow(QMainWindow):
         self.ui.preview_table.setRowCount(0)
         
         # Create and start scraper thread
+
+        # Clean up previous thread if exists
+        if self.scraper_thread:
+            self.scraper_thread.quit()
+            self.scraper_thread.wait()
         self.scraper_thread = ScraperThread(location, max_pages)
+
         self.scraper_thread.progress_update.connect(self.update_progress)
         self.scraper_thread.log_update.connect(self.log) # Log messages
         self.scraper_thread.status_update.connect(self.update_status)
         self.scraper_thread.finished_scraping.connect(self.scraping_finished)
         self.scraper_thread.start()   
-
+        
     def stop_scraping(self):
-        """Stop the scraping process"""
         if self.scraper_thread and self.scraper_thread.isRunning():
             self.scraper_thread.stop()
-            # self.scraper_thread.wait()  # Wait for thread to finish
-            self.log("🛑 Scraping stopped by user")
+            self.log("⏳ Waiting for scraper to stop...")
+            if not self.scraper_thread.wait(5000):  # 5 second timeout
+                self.log("⚠️ Force terminating thread")
+                self.scraper_thread.terminate()
+
+            # ✅ Re-enable inputs
+            self.ui.location_input.setEnabled(True)
+            self.ui.max_pages.setEnabled(True)
+            self.ui.csv_checkBox.setEnabled(True)
+            self.ui.Excel_checkBox.setEnabled(True)
+            self.ui.json_checkBox.setEnabled(True)
             self.ui.start_button.setEnabled(True)
-            self.ui.stop_button.setEnabled(False)  
+            self.ui.stop_button.setEnabled(False)
 
 
     def update_progress(self, current, total):
@@ -110,8 +131,13 @@ class MainWindow(QMainWindow):
     def scraping_finished(self, results):
         """Handle completion of scraping"""
         self.results = results
-        
-        # Update UI state
+
+        # ✅ Re-enable inputs
+        self.ui.location_input.setEnabled(True)
+        self.ui.max_pages.setEnabled(True)
+        self.ui.csv_checkBox.setEnabled(True)
+        self.ui.Excel_checkBox.setEnabled(True)
+        self.ui.json_checkBox.setEnabled(True)
         self.ui.start_button.setEnabled(True)
         self.ui.stop_button.setEnabled(False)
         self.ui.progressBar.setValue(100)
@@ -123,8 +149,7 @@ class MainWindow(QMainWindow):
         # Populate results table (show first 50)
         self.populate_results_table(results[:50])
         
-        # Auto-save if checkbox is checked
-
+        # Auto-save results
         self.save_results()
     
     def populate_results_table(self, results):
