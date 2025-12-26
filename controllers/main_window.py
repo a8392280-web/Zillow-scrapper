@@ -10,6 +10,8 @@ from pathlib import Path
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
+
+        self.setWindowTitle("Zillow Rental Scraper")
         
         # Set up the UI 
         self.ui = Ui_MainWindow()
@@ -76,6 +78,7 @@ class MainWindow(QMainWindow):
         self.ui.csv_checkBox.setEnabled(False)
         self.ui.Excel_checkBox.setEnabled(False)
         self.ui.json_checkBox.setEnabled(False)        
+        self.ui.all_checkbox.setEnabled(False)        
 
         # Update UI state
         self.ui.start_button.setEnabled(False)
@@ -114,6 +117,7 @@ class MainWindow(QMainWindow):
             self.ui.csv_checkBox.setEnabled(True)
             self.ui.Excel_checkBox.setEnabled(True)
             self.ui.json_checkBox.setEnabled(True)
+            self.ui.all_checkbox.setEnabled(True)
             self.ui.start_button.setEnabled(True)
             self.ui.stop_button.setEnabled(False)
 
@@ -138,6 +142,7 @@ class MainWindow(QMainWindow):
         self.ui.csv_checkBox.setEnabled(True)
         self.ui.Excel_checkBox.setEnabled(True)
         self.ui.json_checkBox.setEnabled(True)
+        self.ui.all_checkbox.setEnabled(True)
         self.ui.start_button.setEnabled(True)
         self.ui.stop_button.setEnabled(False)
         self.ui.progressBar.setValue(100)

@@ -22,6 +22,7 @@ from PySide6.QtWidgets import (QAbstractSpinBox, QApplication, QCheckBox, QGridL
     QProgressBar, QPushButton, QSizePolicy, QSpacerItem,
     QSpinBox, QStatusBar, QTabWidget, QTableWidget,
     QTableWidgetItem, QTextEdit, QVBoxLayout, QWidget)
+from . import resources_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
