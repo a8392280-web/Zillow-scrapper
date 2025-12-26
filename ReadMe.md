@@ -21,10 +21,12 @@ A powerful desktop application built with PySide6 to scrape rental listings from
 
 ## 📸 Screenshots
 
-![main_window_photo](images\main_window.PNG)
-![log_photo](images\log.PNG)
-![PreView_photo](images\PreView.PNG)
-![Excel_preview_photo](images\Excel preview.PNG)
+
+![Main Window](images/main_window.PNG)
+![Log Output](images/log.PNG)
+![Preview Window](images/PreView.PNG)
+![Excel Preview](images/Excel_preview.PNG)
+
 
 
 ---
@@ -35,7 +37,7 @@ A powerful desktop application built with PySide6 to scrape rental listings from
 
 
    ```bash
-   git clone https://github.com/yourusername/zillow-scraper.git
+   git clone https://github.com/a8392280-web/zillow-scraper.git
    cd zillow-scraper
    pip install -r requirements.txt
    python main.py
